@@ -2,13 +2,14 @@
 #define BLANK_H
 
 #include <QWidget>
-
 namespace Ui {
 class Blank;
 }
 
-class HodayMathQuiz;
+class QuizQuestionDisplay;
 class ScoreScreen;
+class QuizQuestion;
+class QuizControl;
 
 class Blank : public QWidget
 {
@@ -17,15 +18,30 @@ class Blank : public QWidget
 public:
     explicit Blank(QWidget *parent = 0);
     ~Blank();
+    void setQuizControl(QuizControl *q);
 
-    void showResults(int score);
-    void startNewQuiz();
+    void displayQuizResult(int correctCount, int questionCount);
+    void displayUserAnswerResult(bool result, int correctCount, int questionCount);
+
+    void startQuiz();
+    void checkUserAnswer(int userAnswer);
+
+    void displayNewQuestion2(QuizQuestion *q);
+
+
+private slots:
+    void displayNewQuestion();
 
 
 private:
     Ui::Blank *ui;
-    HodayMathQuiz *w;
-    ScoreScreen *w2;
+    QuizQuestionDisplay *quizQuestionView;
+    ScoreScreen *resultsView;
+
+    QuizControl *quizControl;
+    QuizQuestion *currentQuestion;
+
+    bool isFirstQuestion;
 
 };
 

@@ -13,18 +13,20 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        hodaymathquiz.cpp \
     scorescreen.cpp \
     blank.cpp \
     quizcontrol.cpp \
-    quizquestion.cpp
+    quizquestion.cpp \
+    quizquestiondisplay.cpp
 
-HEADERS  += hodaymathquiz.h \
+HEADERS  += \
     scorescreen.h \
     blank.h \
     quizcontrol.h \
-    quizquestion.h
+    quizquestion.h \
+    quizquestiondisplay.h
 
-FORMS    += hodaymathquiz.ui \
+FORMS    += \
     scorescreen.ui \
-    blank.ui
+    blank.ui \
+    quizquestiondisplay.ui

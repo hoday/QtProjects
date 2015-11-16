@@ -1,5 +1,4 @@
 #include "blank.h"
-#include "hodaymathquiz.h"
 #include "scorescreen.h"
 #include "ui_scorescreen.h"
 
@@ -22,13 +21,12 @@ ScoreScreen::~ScoreScreen()
 
 void ScoreScreen::on_againPushButton_clicked()
 {
-    this->blank->startNewQuiz();
+    this->blank->startQuiz();
 }
 
 
 
-void ScoreScreen::setResults(int score){
-    int maxScore = HodayMathQuiz::QUESTIONS_PER_QUIZ;
-    ui->scoreLabel->setText(QString::number(score) + " / " + QString::number(maxScore));
+void ScoreScreen::displayQuizResult(int correctCount, int questionCount){
+    ui->scoreLabel->setText(QString::number(correctCount) + " / " + QString::number(questionCount));
     ui->againPushButton->setFocus();
 }

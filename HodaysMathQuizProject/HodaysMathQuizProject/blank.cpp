@@ -1,4 +1,8 @@
-#include "hodaymathquiz.h"
+#include <iostream>
+#include "QTimer"
+#include "quizquestion.h"
+#include "quizquestiondisplay.h"
+#include "quizcontrol.h"
 #include "scorescreen.h"
 #include "blank.h"
 #include "ui_blank.h"
@@ -10,13 +14,21 @@ Blank::Blank(QWidget *parent) :
     ui->setupUi(this);
     this->hide();
 
-    w = new HodayMathQuiz(this);
-    w->setBlank(this);
-    w2 = new ScoreScreen(this);
-    w2->setBlank(this);
+    this->quizQuestionView = new QuizQuestionDisplay(this);
+    this->quizQuestionView->setBlank(this);
+    this->quizQuestionView->startNewQuiz();
+    this->resultsView = new ScoreScreen(this);
+    this->resultsView->setBlank(this);
 
+    this->resultsView->hide();
+    this->quizQuestionView->show();
+    this->show();
+    isFirstQuestion = true;
 
-    startNewQuiz();
+}
+
+void Blank::setQuizControl(QuizControl *q){
+    this->quizControl = q;
 }
 
 Blank::~Blank()
@@ -24,16 +36,56 @@ Blank::~Blank()
     delete ui;
 }
 
-void Blank::showResults(int score)
-{
-    w->hide();
-    w2->setResults(score);
-    w2->show();
+void Blank::displayNewQuestion(){
+    this->quizQuestionView->displayNewQuestion(this->currentQuestion);
+    this->quizQuestionView->show();
+    this->resultsView->hide();
+    std::cout << "in function blank::displaynewquestion" << std::endl;
+
 }
 
-void Blank::startNewQuiz(){
-    w2->hide();
-    w->startNewQuiz();
-    w->show();
+void Blank::displayNewQuestion2(QuizQuestion *q){
+    this->currentQuestion = q;
+    int delayTime;
+    if (isFirstQuestion){
+        delayTime = 0;
+    } else {
+        delayTime = 500;
+    }
+    isFirstQuestion = false;
+
+    QTimer::singleShot(delayTime, this, SLOT(displayNewQuestion()));
+
 }
+
+void Blank::displayUserAnswerResult(bool result, int correctCount, int questionCount){
+    this->quizQuestionView->displayUserAnswerResult(result, correctCount, questionCount);
+
+
+}
+
+void Blank::displayQuizResult(int correctCount, int questionCount){
+    this->resultsView->displayQuizResult(correctCount, questionCount);
+    //this->quizQuestionView->hide();
+    //this->resultsView->show();
+    QTimer::singleShot(500, quizQuestionView, SLOT(hide()));
+    QTimer::singleShot(500, resultsView, SLOT(show()));
+
+
+
+}
+
+void Blank::startQuiz(){
+    isFirstQuestion = true;
+
+    this->quizControl->startQuiz();
+    this->quizQuestionView->startNewQuiz();
+
+}
+
+void Blank::checkUserAnswer(int userAnswer){
+    this->quizControl->checkUserAnswer(userAnswer);
+}
+
+
 

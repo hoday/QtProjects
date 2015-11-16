@@ -16,7 +16,7 @@ class ScoreScreen : public QWidget
 public:
     explicit ScoreScreen(QWidget *parent = 0);
     void setBlank(Blank *b);
-    void setResults(int score);
+    void displayQuizResult(int correctCount, int questionCount);
 
     ~ScoreScreen();
 
