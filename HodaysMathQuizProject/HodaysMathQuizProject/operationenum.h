@@ -1,0 +1,5 @@
+#ifndef OPERATIONENUM_H
+#define OPERATIONENUM_H
+enum Operation { ADD, SUBTRACT, MULTIPLY };
+
+#endif // OPERATIONENUM_H

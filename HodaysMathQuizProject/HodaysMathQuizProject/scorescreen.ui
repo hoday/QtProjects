@@ -31,29 +31,50 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="againPushButton">
+  <widget class="QSplitter" name="splitter">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>150</y>
-     <width>111</width>
-     <height>41</height>
+     <x>40</x>
+     <y>160</y>
+     <width>300</width>
+     <height>36</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
-   <property name="text">
-    <string>Again</string>
-   </property>
-   <property name="autoDefault">
-    <bool>true</bool>
-   </property>
-   <property name="default">
-    <bool>true</bool>
-   </property>
+   <widget class="QPushButton" name="selectOtherQuizPushButton">
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Another Quiz</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="againPushButton">
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Again</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

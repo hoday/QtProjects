@@ -1,5 +1,6 @@
 #include <iostream>
 #include "QTimer"
+#include "quizselectionscreen.h"
 #include "quizquestion.h"
 #include "quizquestiondisplay.h"
 #include "quizcontrol.h"
@@ -14,6 +15,8 @@ Blank::Blank(QWidget *parent) :
     ui->setupUi(this);
     this->hide();
 
+    this->quizSelectionScreen = new QuizSelectionScreen(this);
+    this->quizSelectionScreen->setBlank(this);
     this->quizQuestionView = new QuizQuestionDisplay(this);
     this->quizQuestionView->setBlank(this);
     this->quizQuestionView->startNewQuiz();
@@ -21,7 +24,8 @@ Blank::Blank(QWidget *parent) :
     this->resultsView->setBlank(this);
 
     this->resultsView->hide();
-    this->quizQuestionView->show();
+    this->quizQuestionView->hide();
+    this->quizSelectionScreen->show();
     this->show();
     isFirstQuestion = true;
 
@@ -40,6 +44,7 @@ void Blank::displayNewQuestion(){
     this->quizQuestionView->displayNewQuestion(this->currentQuestion);
     this->quizQuestionView->show();
     this->resultsView->hide();
+    this->quizSelectionScreen->hide();
     std::cout << "in function blank::displaynewquestion" << std::endl;
 
 }
@@ -81,6 +86,17 @@ void Blank::startQuiz(){
     this->quizControl->startQuiz();
     this->quizQuestionView->startNewQuiz();
 
+}
+
+void Blank::selectAnotherQuiz(){
+    this->quizSelectionScreen->show();
+    this->quizQuestionView->hide();
+    this->resultsView->hide();
+
+}
+
+void Blank::setQuiz(int num){
+    this->quizControl->setQuiz(num);
 }
 
 void Blank::checkUserAnswer(int userAnswer){

@@ -10,6 +10,7 @@ class QuizQuestionDisplay;
 class ScoreScreen;
 class QuizQuestion;
 class QuizControl;
+class QuizSelectionScreen;
 
 class Blank : public QWidget
 {
@@ -24,6 +25,9 @@ public:
     void displayUserAnswerResult(bool result, int correctCount, int questionCount);
 
     void startQuiz();
+    void selectAnotherQuiz();
+    void setQuiz(int num);
+
     void checkUserAnswer(int userAnswer);
 
     void displayNewQuestion2(QuizQuestion *q);
@@ -35,6 +39,7 @@ private slots:
 
 private:
     Ui::Blank *ui;
+    QuizSelectionScreen *quizSelectionScreen;
     QuizQuestionDisplay *quizQuestionView;
     ScoreScreen *resultsView;
 

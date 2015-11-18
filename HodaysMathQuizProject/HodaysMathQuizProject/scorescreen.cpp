@@ -30,3 +30,8 @@ void ScoreScreen::displayQuizResult(int correctCount, int questionCount){
     ui->scoreLabel->setText(QString::number(correctCount) + " / " + QString::number(questionCount));
     ui->againPushButton->setFocus();
 }
+
+void ScoreScreen::on_selectOtherQuizPushButton_clicked()
+{
+    this->blank->selectAnotherQuiz();
+}

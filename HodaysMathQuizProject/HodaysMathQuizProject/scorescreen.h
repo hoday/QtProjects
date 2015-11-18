@@ -23,6 +23,8 @@ public:
 private slots:
     void on_againPushButton_clicked();
 
+    void on_selectOtherQuizPushButton_clicked();
+
 private:
     Ui::ScoreScreen *ui;
     Blank *blank;

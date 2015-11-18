@@ -2,6 +2,7 @@
 #define QUIZCONTROL_H
 
 class QuizQuestion;
+class QuizQuestionMaker;
 
 class QuizControl
 {
@@ -9,6 +10,7 @@ public:
     QuizControl();
     void startQuiz();
     void checkUserAnswer(int answer);
+    void setQuiz(int num);
 
 
 private:
@@ -19,6 +21,7 @@ private:
 
     Blank *blank;
     QuizQuestion *currentQuestion;
+    QuizQuestionMaker *quizQuestionMaker;
 
     int correctCount;
     int questionCount;

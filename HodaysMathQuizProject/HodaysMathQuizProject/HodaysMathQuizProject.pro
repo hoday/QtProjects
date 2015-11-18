@@ -17,16 +17,22 @@ SOURCES += main.cpp\
     blank.cpp \
     quizcontrol.cpp \
     quizquestion.cpp \
-    quizquestiondisplay.cpp
+    quizquestiondisplay.cpp \
+    quizselectionscreen.cpp \
+    quizquestionmaker.cpp
 
 HEADERS  += \
     scorescreen.h \
     blank.h \
     quizcontrol.h \
     quizquestion.h \
-    quizquestiondisplay.h
+    quizquestiondisplay.h \
+    quizselectionscreen.h \
+    quizquestionmaker.h \
+    operationenum.h
 
 FORMS    += \
     scorescreen.ui \
     blank.ui \
-    quizquestiondisplay.ui
+    quizquestiondisplay.ui \
+    quizselectionscreen.ui
